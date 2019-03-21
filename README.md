@@ -4,6 +4,22 @@ This is the companion repository for [our paper](https://ieeexplore.ieee.org/doc
 ## Architecture
 ![architecture fcn](https://github.com/hfawaz/bigdata18/blob/master/png/fcn-archi.png)
 
+## Building this project
+In order to get the cythonized code and project up and running first, you will have to run the simple shell script that the authors have provided to set the project up. You will not have to manually run the setup.py file yourself to build the cython code. This is all included in the build shell script, which can be run from the root directory of the project by running this in the command line:
+
+```bash
+bash ./utils/build-cython.sh
+
+```
+
+Sometimes you encounter an error with Tensorflow backend not executing properly due to some dependencies. I have fixed this issue by uninstalling and install Tensorflow 1.13 again.
+
+```bash
+python3 -m pip uninstall tensorflow
+
+python3 -m pip install --user tensorflow
+```
+
 ## Source code
 The software is developed using Python 3.5. We trained the models on a cluster of more than 60 GPUs. You will need the [UCR archive](https://www.cs.ucr.edu/~eamonn/time_series_data/) to re-run the experiments of the paper. 
 

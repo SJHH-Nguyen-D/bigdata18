@@ -7,6 +7,7 @@ import time
 import keras 
 import numpy as np
 import sys
+import os
 
 from utils.utils import create_directory
 from utils.utils import read_all_datasets
@@ -21,6 +22,8 @@ from knn import get_neighbors
 from datareduce import reduce
 
 import pandas as pd
+
+print(sys.argv) # prints a list of one element -> 'main.py'
 
 def read_data_from_dataset(use_init_clusters=True):
 
@@ -152,7 +155,7 @@ def reduce_function(reduce_algorithm_name, x_train, y_train, C, init_clusters_pe
 					  averaging_algorithm='dba', distance_algorithm='dtw',
 					  init_clusters_per_class=init_clusters_per_class), 'dtw'
 
-root_dir = '/mnt/nfs/casimir/'
+root_dir = os.path.abspath(__file__) # os.getcwd()
 
 results_dir = root_dir+'results/fcn/'
 
@@ -162,7 +165,7 @@ verbose = False
 
 write_dir_root = root_dir+'/transfer-learning-results/'
 
-if sys.argv[1] == 'transfer_learning':
+if sys.argv[1] == 'transfer_learning': # originally sys.argv[1]
 	# loop through all archives
 	for archive_name in ARCHIVE_NAMES:
 		# read all datasets
